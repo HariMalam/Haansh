@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/view.css" />
+    <%- include('links') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <div class="container">
+      <h1>Job Applications</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% apply.forEach(applicant => { %>
+                <tr>
+                    <td><%= applicant.name %></td>
+                    <td><%= applicant.email %></td>
+                    <td>
+                        <div class="button-container">
+                            <button class="button hire">Hire</button>
+                            <button class="button reject">Reject</button>
+                            <button class="button profile">Profile</button>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    </div>
+  </body>
+</html>

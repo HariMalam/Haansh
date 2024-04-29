@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/hire.css" />
+  <%- include('links') %>
+  <title>Document</title>
+</head>
+<body>
+  <%- include('navbar') %>
+  <div class="container">
+    <h2 class="head">Hiring</h2>
+    <form action="/hire" method="post">
+      <input type="text" name="jobName" placeholder="Job Name" required />
+      <input type="text" name="details" placeholder="Details" required />
+      <input
+        type="number"
+        name="mobile"
+        placeholder="Mobile Number"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        required
+      />
+      <input
+        type="number"
+        name="salary"
+        placeholder="Salary Per Hour"
+        required
+      />
+      <input type="submit" class="btn btn-primary" value="Post" />
+      <br />
+    </form>
+  </div>
+
+  <div class="container">
+    <% jobDetails.forEach(job => { %>
+    <div class="job">
+      <h2><%= job.jobName %></h2>
+      <h3><%= job.username %></h3>
+      <p><%= job.details %></p>
+      <p>Mobile: <%= job.mobile %></p>
+      <p>Email: <%= job.email %></p>
+      <p>Salary: $<%= job.salary %></p>
+      <fo action="/work" method="post">
+        <button><a href="/hire/view/<%= job.jobId %>">View</a></button>
+    </div>
+    <% }) %>
+  </div>
+</body>
+</html>

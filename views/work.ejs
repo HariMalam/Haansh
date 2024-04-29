@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/work.css" />
+    <%- include('links') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <h1>Job Listings</h1>
+    <div class="container">
+      <% jobDetails.forEach(job => { %>
+      <div class="job">
+        <h2><%= job.jobName %></h2>
+        <p><%= job.details %></p>
+        <p>Mobile: <%= job.mobile %></p>
+        <p>Email: <%= job.email %></p>
+        <p>Salary: $<%= job.salary %></p>
+        <% if (apply.some(myJob => myJob.jobId === job.jobId)) { %>
+          <button>Applied</button>
+        <% } else { %>
+          <button><a href="/work/<%= job.jobId %>">Apply</a></button>
+        <% } %>
+
+      <% }) %>
+    </div>
+  </body>
+</html>
