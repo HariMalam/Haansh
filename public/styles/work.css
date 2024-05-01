@@ -1,5 +1,4 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -9,8 +8,8 @@ h1{
   text-align: center;
 }
 
-.container {
-  max-width: 800px;
+.containers {
+  width: 60%;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -29,25 +28,23 @@ h1{
   margin-bottom: 10px;
 }
 
+.job h3 span {
+  color: red;
+  margin-bottom: 10px;
+}
+.job h3 {
+  font-size: 20px;
+}
+
 .job p {
   margin: 5px 0;
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-button a{
-  color: #fff;
-  text-decoration: none;
+.jobMain{
+  display: flex;
+  justify-content: space-between;
 }
 
-button:hover {
-  background-color: #0056b3;
+.button{
+  width: 150px;
 }

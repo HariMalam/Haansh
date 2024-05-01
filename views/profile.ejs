@@ -20,7 +20,9 @@
         <p><label>Date of Birth:</label> <%= user.dob.toDateString() %></p>
         <p><label>Address:</label> <%= user.address %></p>
     </div>
+    <% if(user.username === username) {%>
     <button onclick="editProfile()">Edit Profile</button>
+    <% } %>
 </div>
 </body>
 </html>

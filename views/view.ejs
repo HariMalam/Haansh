@@ -3,38 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/view.css" />
     <%- include('links') %>
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles/view.css" />
+    <title>Applications</title>
   </head>
   <body>
     <%- include('navbar') %>
-    <div class="container">
-      <h1>Job Applications</h1>
-    <table>
+    <a href="/hire" class="backBtn" id="backBtn"><i class="fa-solid fa-arrow-left"></i></a>
+    <div class="containers">
+      <h1 class="head">Applications</h1>
+      <table>
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
+          <tr>
+            <th class="name">Name</th>
+            <th class="email">Email</th>
+            <th class="date">Date</th>
+            <th class="action">Action</th>
+          </tr>
         </thead>
         <tbody>
-            <% apply.forEach(applicant => { %>
-                <tr>
-                    <td><%= applicant.name %></td>
-                    <td><%= applicant.email %></td>
-                    <td>
-                        <div class="button-container">
-                            <button class="button hire">Hire</button>
-                            <button class="button reject">Reject</button>
-                            <button class="button profile">Profile</button>
-                        </div>
-                    </td>
-                </tr>
-            <% }); %>
+          <% apply.forEach(applicant => { %>
+          <tr>
+            <td><a href="/profile/<%= applicant.user %>"><%= applicant.name %></a></td>
+            <td><a href="/profile/<%= applicant.user %>"><%= applicant.email %></a></td>
+            <td><a href="/profile/<%= applicant.user %>"><%= applicant.createdAt.toDateString() %></a></td>
+            <td class="action">
+              <div class="button-container">
+                <form action="/action/hired" method="post">
+                  <input
+                    type="text"
+                    value="<%= applicant.jobId %>"
+                    name="id"
+                    hidden
+                  />
+                  <input
+                    type="text"
+                    value="<%= applicant.user %>"
+                    name="user"
+                    hidden
+                  />
+                  <% if(applicant.status === "pending" ){%>
+                  <button class="btn btn-success button" type="submit">Hire</button>
+                  <% } if(applicant.status === "Hired"){%>
+                  <button class="btn btn-success button" type="submit" disabled>
+                    Hired
+                  </button>
+                  <% }%>
+                </form>
+                <form action="/action/reject" method="post">
+                  <input
+                    type="text"
+                    value="<%= applicant.jobId %>"
+                    name="id"
+                    hidden
+                  />
+                  <input
+                    type="text"
+                    value="<%= applicant.user %>"
+                    name="user"
+                    hidden
+                  />
+                  <% if(applicant.status === "pending" ){%>
+                  <button class="btn btn-danger button" type="submit">Reject</button>
+                  <% } if(applicant.status === "Rejected"){%>
+                  <button class="btn btn-danger button" type="submit" disabled>
+                    Rejected
+                  </button>
+                  <% }%>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <% }); %>
         </tbody>
-    </table>
+      </table>
     </div>
   </body>
 </html>

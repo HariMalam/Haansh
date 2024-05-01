@@ -1,55 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles/hire.css" />
-  <%- include('links') %>
-  <title>Document</title>
-</head>
-<body>
-  <%- include('navbar') %>
-  <div class="container">
-    <h2 class="head">Hiring</h2>
-    <form action="/hire" method="post">
-      <input type="text" name="jobName" placeholder="Job Name" required />
-      <input type="text" name="details" placeholder="Details" required />
-      <input
-        type="number"
-        name="mobile"
-        placeholder="Mobile Number"
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="email"
-        required
-      />
-      <input
-        type="number"
-        name="salary"
-        placeholder="Salary Per Hour"
-        required
-      />
-      <input type="submit" class="btn btn-primary" value="Post" />
-      <br />
-    </form>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('links') %>
+    <link rel="stylesheet" href="/styles/hire.css" />
+    <title>I'm For Hiring</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <button onclick="back()" class="backBtn" id="backBtn">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
 
-  <div class="container">
-    <% jobDetails.forEach(job => { %>
-    <div class="job">
-      <h2><%= job.jobName %></h2>
-      <h3><%= job.username %></h3>
-      <p><%= job.details %></p>
-      <p>Mobile: <%= job.mobile %></p>
-      <p>Email: <%= job.email %></p>
-      <p>Salary: $<%= job.salary %></p>
-      <fo action="/work" method="post">
-        <button><a href="/hire/view/<%= job.jobId %>">View</a></button>
+    <div class="containers" id="form">
+      <h2 class="head">Hiring</h2>
+      <form action="/hire" method="post">
+        <input type="text" name="jobName" placeholder="Job Name" required />
+        <input
+          type="text"
+          name="compName"
+          placeholder="Company Name"
+          required
+        />
+        <input type="text" name="details" placeholder="Details" required />
+        <input
+          type="number"
+          name="mobile"
+          placeholder="Mobile Number"
+          required
+        />
+        <input type="email" name="email" placeholder="email" required />
+        <input type="number" name="salary" placeholder="Salary" required />
+        <input type="submit" class="btn btn-primary" value="Post" />
+        <br />
+      </form>
     </div>
-    <% }) %>
-  </div>
-</body>
+
+    <div class="containers" id="addbtn">
+      <button onclick="addJob()" class="btn btn-success" id="addJob">
+        <i class="fa-regular fa-square-plus"></i> Add Job
+      </button>
+    </div>
+
+    <div id="myJob">
+      <% jobDetails.forEach(job => { %>
+      <div class="job containers">
+        <div class="jobMain">
+          <h2><%= job.jobName %></h2>
+          <h3><span><%= job.compName %></span></h3>
+        </div>
+        <p>Details: <%= job.details %></p>
+        <p>Mobile: <%= job.mobile %></p>
+        <p>Email: <%= job.email %></p>
+        <p>Salary: $<%= job.salary %></p>
+        <a href="/hire/view/<%= job.jobId %>" class="button btn btn-primary"
+          >View</a
+        >
+        <a href="/action/delete/<%= job.jobId %>" class="button btn btn-danger"
+          >Delete</a
+        >
+      </div>
+      <% }) %>
+    </div>
+
+    <script>
+      const addJob = () => {
+        document.getElementById("addbtn").style.display = "none";
+        document.getElementById("form").style.display = "block";
+        document.getElementById("myJob").style.display = "none";
+        document.getElementById("backBtn").style.display = "block";
+      };
+      const back = () => {
+        document.getElementById("addbtn").style.display = "block";
+        document.getElementById("form").style.display = "none";
+        document.getElementById("myJob").style.display = "block";
+        document.getElementById("backBtn").style.display = "none";
+      };
+    </script>
+  </body>
 </html>

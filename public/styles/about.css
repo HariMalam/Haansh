@@ -4,8 +4,8 @@ body {
   background-color: #f4f4f4;
 }
 
-.container {
-  max-width: 800px;
+.containers {
+  width: 60%;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;

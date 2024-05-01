@@ -3,8 +3,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const session = require("express-session");
-const multer = require("multer");
-const fs = require("fs");
 
 const {restrictToLoggedinUserOnly} = require("./middlewares/restrict");
 const {setUser} = require("./middlewares/setUser");
@@ -15,6 +13,7 @@ const handleAbout = require("./routes/about");
 const handleProfile = require("./routes/profile");
 const handleHome = require("./routes/home");
 const handleAuth = require("./routes/auth");
+const handleAction = require("./routes/action");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/Haansh")
@@ -56,6 +55,7 @@ app.use("/hire", handleHire);
 app.use("/work", handleWork);
 app.use("/about", handleAbout);
 app.use("/profile", handleProfile);
+app.use("/action", handleAction);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

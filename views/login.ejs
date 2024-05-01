@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('links') %>
     <link rel="stylesheet" href="/styles/login.css" />
-
     <title>Login Page</title>
   </head>
 
   <body>
+    <%- include('navbar') %>
+    <div class="background"></div>
+    <div class="cont">
     <div class="login-container">
-      <h2>Log-in</h2>
+      <h2><i class="fa-solid fa-lock"></i> Login</h2>
       <% if(invalid) {%>
       <div style="color: red; padding-bottom: 10px">
         Invalid Username or Password !!
@@ -31,8 +34,12 @@
         <input type="submit" value="Login" />
         <br />
         <hr />
-        <a class="Create" href="/auth/signup">Create Account ?</a>
+        <div class="slink">
+          <a class="Create" href="/auth/signup">Create Account ?</a>
+        </div>
       </form>
     </div>
+  </div>
+
   </body>
 </html>

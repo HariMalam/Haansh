@@ -11,6 +11,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    compName: {
+      type: String,
+      required: true,
+    },
     details: {
       type: String,
       required: true,

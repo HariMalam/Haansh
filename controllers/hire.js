@@ -5,15 +5,18 @@ const { v4: uuidv4 } = require('uuid');
 const handleGetHire =async (req, res) => {
   const user = req.user;
   let status = false;
+  let id = null;
   if (user) {
     status = true;
+    id = user.username;
   }
   const jobDetails = await Job.find({ username: user.username });
-  res.render("hire", {status, jobDetails});
+  res.render("hire", {status, jobDetails,id});
 };
 const handlePostHire = async (req, res) => {
   const {
     jobName,
+    compName,
     details,
     mobile,
     email,
@@ -27,6 +30,7 @@ const handlePostHire = async (req, res) => {
   await Job.create({
     jobId,
     jobName,
+    compName,
     details,
     mobile,
     email,
@@ -40,13 +44,15 @@ const handlePostHire = async (req, res) => {
 const handleGetView = async (req,res) =>{
   const user = req.user;
   let status = false;
+  let id = null;
   if (user) {
     status = true;
+    id = user.username;
   }
   const jobId = req.params.id
 
   const apply = await Apply.find({jobId})
-  res.render("view",{status, apply});
+  res.render("view",{status, apply,id});
 }
 
 module.exports = { handleGetHire, handlePostHire, handleGetView };

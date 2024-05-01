@@ -1,35 +1,13 @@
-/* Set's border, padding and margin to 0 for all values */
-* {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
 
-body, html {
-  color: #373C40;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  height: 100%;
-  /* background-color: #f0f0f0; */
-}
 
 body {
-  font-size: 70%;
+  background-color: #f0f0f0;
 }
 
 p {
   padding: 7px 0;
   font-weight: 500;
   font-size: 10pt;
-}
-
-a {
-  color: #656565;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #abda0f;
-  text-decoration: none;
 }
 
 h1 {
@@ -43,17 +21,18 @@ h1 {
 
 h4 {
   padding: 1px;
-  color: #ACACAC;
+  color: #acacac;
   font-size: 9pt;
   font-weight: 100;
   text-transform: uppercase;
 }
 
-.container {
-  width: 800px;
+.containers {
+  width: 60%;
   margin: 20px auto 0px auto;
   background-color: #fff;
-  padding: 5px;
+  padding: 25px;
+  border-radius: 8px;
 }
 
 .head {
@@ -71,7 +50,7 @@ input[type="number"],
 input[type="email"],
 input[type="date"],
 select {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -86,11 +65,8 @@ input[type="radio"] {
   margin-bottom: 10px;
 }
 
-
 input[type="submit"] {
-  width: 95%;
-  padding: 8px;
-  margin: 10px;
+  width: 100%;
 }
 
 .Create {
@@ -104,46 +80,50 @@ input[type="submit"] {
   color: #abda0f;
 }
 
-
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .job {
   margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
 }
 
 .job h2 {
   color: #007bff;
   margin-bottom: 10px;
 }
+.job h3 span {
+  color: red;
+  margin-bottom: 10px;
+}
+.job h3 {
+  font-size: 20px;
+}
 
 .job p {
   margin: 5px 0;
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-button a{
-  color: #fff;
-  text-decoration: none;
+#form {
+  display: none;
 }
 
-button:hover {
-  background-color: #0056b3;
+.backBtn {
+  /* background-color: white; */
+  font-size: 30px;
+  margin: 10px 20px;
+  color: black;
+  display: none;
+  border: none;
+}
+
+#addJob {
+  width: 100%;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.jobMain{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button{
+  width: 150px;
 }

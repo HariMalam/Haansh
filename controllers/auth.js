@@ -6,11 +6,27 @@ const handleGetLogin = (req, res) => {
   const success = req.session.success || false;
   delete req.session.invalid;
   delete req.session.success;
-  res.render("login", { invalid, success });
+  const user = req.user;
+  let status = false;
+  let id = null;
+  if (user) {
+    status = true;
+    id = user.username;
+  }
+  res.render("login", { invalid, success, status, id });
 };
 
 const handleGetSignup = (req, res) => {
-  res.render("signup");
+  const error = req.session.error || "";
+  delete req.session.error;
+  const user = req.user;
+  let status = false;
+  let id = null;
+  if (user) {
+    status = true;
+    id = user.username;
+  }
+  res.render("signup", { status, id, error });
 };
 
 const handlePostLogin = async (req, res) => {
@@ -31,7 +47,6 @@ const handlePostLogin = async (req, res) => {
     }
 
     req.session.uid = user._id;
-    console.log(username, ": Login");
 
     return res.redirect("/");
   } catch (error) {
@@ -40,18 +55,16 @@ const handlePostLogin = async (req, res) => {
   }
 };
 
-
 const handlePostSignup = async (req, res) => {
-  const {
-    name,
-    username,
-    mobile,
-    email,
-    password,
-    gender,
-    dob,
-    address,
-  } = req.body;
+  const { name, username, mobile, email, password, gender, dob, address } =
+    req.body;
+
+  const existingUser = await User.findOne({ username: username.trim() });
+  if (existingUser) {
+    const error = "username already exists";
+    req.session.error = error;
+    return res.redirect("/auth/signup");
+  }
 
   const hashedPassword = await bcrypt.hash(password, 10);
   await User.create({
@@ -66,15 +79,19 @@ const handlePostSignup = async (req, res) => {
   });
 
   req.session.success = true;
-  console.log(username, ": signup");
   return res.redirect("/login");
 };
 
 const handleLogout = (req, res) => {
-  console.log("logout")
   delete req.session.uid;
   req.user = null;
   res.redirect("/");
 };
 
-module.exports = { handleGetLogin, handleGetSignup, handlePostSignup, handlePostLogin, handleLogout };
+module.exports = {
+  handleGetLogin,
+  handleGetSignup,
+  handlePostSignup,
+  handlePostLogin,
+  handleLogout,
+};

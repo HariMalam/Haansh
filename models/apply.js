@@ -5,7 +5,6 @@ const userSchema = mongoose.Schema(
     jobId: {
       type: String,
       required: true,
-      unique: true,
     },
     user: {
       type: String,
