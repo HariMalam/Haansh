@@ -50,5 +50,3 @@ To run the project locally, follow these steps:
    npm start
    
 6. Open your web browser and go to http://localhost:5000 to view the application.
-
-## Developed by Malam Hari
