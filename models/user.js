@@ -35,6 +35,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    resume: {
+      type: String,
+      default: null,
+    },
     userType: {
       type: String,
       required: true,

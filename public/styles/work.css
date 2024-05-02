@@ -33,7 +33,7 @@ h1{
   margin-bottom: 10px;
 }
 .job h3 {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .job p {
@@ -47,4 +47,47 @@ h1{
 
 .button{
   width: 150px;
+}
+
+.searchForm{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#select{
+  width: 25%;
+  padding: 5px;
+}
+
+.search{
+  width: 50%;
+  padding: 5px;
+}
+
+.searchBtn{
+  width: 20%;
+}
+
+.box{
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px 0px;
+  border-radius: 8px;
+}
+
+th{
+  width: 25%;
+}
+table{
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.col{
+  width: fit-content;
+  width: 10px;
+  padding-right: 20px;
+  padding-bottom: 5px;
 }

@@ -13,8 +13,22 @@ const handlePostRejeced = async (req, res) => {
 };
 const handleDelete = async (req, res) => {
   const jobId = req.params.id;
-  const result = await Job.deleteOne({jobId})
+  const result1 = await Job.deleteOne({jobId})
+  const result2 = await Apply.deleteMany({jobId})
   res.redirect(`/hire`)
 };
+const handleSearch = async (req, res) => {
+  const search = req.body.search;
+  req.session.select = req.body.select;
+  req.session.search = search.toLowerCase().trim();
+  res.redirect(`/work`);
+};
 
-module.exports = { handlePostHired, handlePostRejeced, handleDelete };
+const handleCancle = async (req, res) => {
+  const _id = req.params.id;
+  const result1 = await Apply.deleteOne({_id})
+  console.log(result1);
+  res.redirect(`/work`);
+};
+
+module.exports = { handlePostHired, handlePostRejeced, handleDelete, handleSearch, handleCancle };

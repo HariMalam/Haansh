@@ -28,9 +28,17 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     salary: {
-      type: Number,
+      type: String,
       required: true,
     },
+    city: {
+      type: String,
+      required: true,
+    },
+    website: {
+      type: String,
+    },
+    skills: [String],
     username: {
       type: String,
       required: true,

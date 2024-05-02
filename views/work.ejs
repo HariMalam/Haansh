@@ -8,16 +8,80 @@
     <title>I'm For Working</title>
   </head>
   <body>
-    <%- include('navbar') %> <% jobDetails.forEach(job => { %>
+    <%- include('navbar') %>
+    <div class="box">
+      <form action="/action/search" class="searchForm" method="post">
+        <select name="select" id="select">
+          <option value="all">All</option>
+          <option value="jobName">Job Name</option>
+          <option value="compName">Company Name</option>
+          <option value="city">City</option>
+          <option value="skills">Skill</option>
+        </select>
+        <input
+          type="text"
+          class="search"
+          placeholder="search"
+          name="search"
+          required
+        />
+        <input type="submit" value="search" class="searchBtn btn btn-primary" />
+      </form>
+    </div>
+    <% myjobdetails.forEach(job => { %>
     <div class="job containers">
       <div class="jobMain">
         <h2><%= job.jobName %></h2>
         <h3><span><%= job.compName %></span></h3>
       </div>
-      <p><%= job.details %></p>
-      <p>Mobile: <%= job.mobile %></p>
-      <p>Email: <%= job.email %></p>
-      <p>Salary: $<%= job.salary %></p>
+      <hr />
+      <table>
+        <tr>
+          <th>Date</th>
+          <th class="col">:</th>
+          <td><%= new Date(job.createdAt).toLocaleDateString('en-GB') %></td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <th class="col">:</th>
+          <td><%= job.details %></td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <th class="col">:</th>
+          <td><%= job.mobile %></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <th class="col">:</th>
+          <td><%= job.email %></td>
+        </tr>
+        <tr>
+          <th>Salary</th>
+          <th class="col">:</th>
+          <td><%= job.salary %></td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <th class="col">:</th>
+          <td><%= job.city %></td>
+        </tr>
+        <tr>
+          <th>Webiste</th>
+          <th class="col">:</th>
+          <td>
+            <a href="<%= job.website %>" target="_blank"><%= job.website %></a>
+          </td>
+        </tr>
+        <tr>
+          <th>Skills</th>
+          <th class="col">:</th>
+          <td>
+            <% job.skills.forEach(skill => { %>
+            <span class="skill"><%= skill %>,</span><% }) %>
+          </td>
+        </tr>
+      </table>
       <% if (apply.some(myJob => myJob.jobId === job.jobId)) { %> <%
       apply.filter(myJob => myJob.jobId === job.jobId).forEach(myJob => { %> <%
       if(myJob.status === "Hired"){%>
@@ -26,7 +90,75 @@
       <a class="btn btn-danger button"><%= myJob.status %></a>
       <% }if(myJob.status === "pending"){%>
       <a class="btn btn-warning button"><%= myJob.status %></a>
-
+      <a href="/action/cancle/<%= myJob._id %>" class="btn btn-danger button"
+        >cancle</a
+      >
+      <% } %> <% }); %> <% } else { %>
+      <a href="/work/<%= job.jobId %>" class="btn btn-primary button">Apply</a>
+      <% } %>
+    </div>
+    <% }) %> <% jobdetails.forEach(job => { %>
+    <div class="job containers">
+      <div class="jobMain">
+        <h2><%= job.jobName %></h2>
+        <h3><span><%= job.compName %></span></h3>
+      </div>
+      <hr />
+      <table>
+        <tr>
+          <th>Date</th>
+          <th class="col">:</th>
+          <td><%= new Date(job.createdAt).toLocaleDateString('en-GB') %></td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <th class="col">:</th>
+          <td><%= job.details %></td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <th class="col">:</th>
+          <td><%= job.mobile %></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <th class="col">:</th>
+          <td><%= job.email %></td>
+        </tr>
+        <tr>
+          <th>Salary</th>
+          <th class="col">:</th>
+          <td><%= job.salary %></td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <th class="col">:</th>
+          <td><%= job.city %></td>
+        </tr>
+        <tr>
+          <th>Webiste</th>
+          <th class="col">:</th>
+          <td>
+            <a href="<%= job.website %>" target="_blank"><%= job.website %></a>
+          </td>
+        </tr>
+        <tr>
+          <th>Skills</th>
+          <th class="col">:</th>
+          <td>
+            <% job.skills.forEach(skill => { %>
+            <span class="skill"><%= skill %>,</span><% }) %>
+          </td>
+        </tr>
+      </table>
+      <% if (apply.some(myJob => myJob.jobId === job.jobId)) { %> <%
+      apply.filter(myJob => myJob.jobId === job.jobId).forEach(myJob => { %> <%
+      if(myJob.status === "Hired"){%>
+      <a class="btn btn-success button"><%= myJob.status %></a>
+      <% }if(myJob.status === "Rejected"){%>
+      <a class="btn btn-danger button"><%= myJob.status %></a>
+      <% }if(myJob.status === "pending"){%>
+      <a class="btn btn-warning button"><%= myJob.status %></a>
       <% } %> <% }); %> <% } else { %>
       <a href="/work/<%= job.jobId %>" class="btn btn-primary button">Apply</a>
       <% } %>

@@ -4,8 +4,8 @@ body {
   background-color: #f4f4f4;
 }
 
-.container {
-  max-width: 800px;
+.containers {
+  width: 60%;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -22,26 +22,47 @@ h1 {
   margin-bottom: 20px;
 }
 
-.profile-info p {
-  margin: 5px 0;
+th {
+  width: 200px;
 }
 
-.profile-info label {
-  font-weight: bold;
+.col {
+  width: fit-content;
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
+td {
+  display: flex;
+  padding: 10px;
+  padding-left: 20px;
+  justify-content: space-between;
+}
+td .error-message {
+  color: red;
+}
+
+td input {
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
+  padding: 1px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.sbtn,
+.epage {
+  display: none;
+}
+.backBtn {
+  width: 140px;
+  display: none;
+  margin-left: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  width: 140px;
+}
+
+.resume {
+  width: fit-content;
 }

@@ -26,7 +26,7 @@
           <tr>
             <td><a href="/profile/<%= applicant.user %>"><%= applicant.name %></a></td>
             <td><a href="/profile/<%= applicant.user %>"><%= applicant.email %></a></td>
-            <td><a href="/profile/<%= applicant.user %>"><%= applicant.createdAt.toDateString() %></a></td>
+            <td><a href="/profile/<%= applicant.user %>"><%= new Date(applicant.createdAt).toLocaleDateString('en-GB') %></a></td>
             <td class="action">
               <div class="button-container">
                 <form action="/action/hired" method="post">

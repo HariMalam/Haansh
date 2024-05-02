@@ -4,27 +4,12 @@ body {
   background-color: #f0f0f0;
 }
 
-p {
-  padding: 7px 0;
-  font-weight: 500;
-  font-size: 10pt;
+.thead{
+  width: 25%;
 }
-
-h1 {
-  font-weight: 600;
-  text-align: center;
-  color: #000000;
-  font-size: 20pt;
-  padding-left: 33px;
-  margin: 7px 5px 8px 8px;
-}
-
-h4 {
-  padding: 1px;
-  color: #acacac;
-  font-size: 9pt;
-  font-weight: 100;
-  text-transform: uppercase;
+table{
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .containers {
@@ -92,20 +77,12 @@ input[type="submit"] {
   color: red;
   margin-bottom: 10px;
 }
-.job h3 {
-  font-size: 20px;
-}
-
-.job p {
-  margin: 5px 0;
-}
 
 #form {
   display: none;
 }
 
 .backBtn {
-  /* background-color: white; */
   font-size: 30px;
   margin: 10px 20px;
   color: black;
@@ -126,4 +103,32 @@ input[type="submit"] {
 
 .button{
   width: 150px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 5px 15px;
+  margin-right: 5px;
+  position: relative;
+  border-radius: 5px;
+  margin: 5px 5px 10px 0px;
+}
+
+.tag .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.col{
+  width: fit-content;
+  width: 10px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+}
+
+.error-message{
+  color: red;
 }

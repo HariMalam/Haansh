@@ -15,7 +15,7 @@
 
     <div class="containers" id="form">
       <h2 class="head">Hiring</h2>
-      <form action="/hire" method="post">
+      <form action="/hire" method="post" id="hireForm">
         <input type="text" name="jobName" placeholder="Job Name" required />
         <input
           type="text"
@@ -27,14 +27,30 @@
         <input
           type="number"
           name="mobile"
+          id="mobile"
           placeholder="Mobile Number"
           required
         />
-        <input type="email" name="email" placeholder="email" required />
-        <input type="number" name="salary" placeholder="Salary" required />
+        <input type="text" id="city" placeholder="City" name="city" />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="salary" placeholder="Salary" required />
+        <input
+          type="text"
+          name="website"
+          placeholder="Website Link (Optional)"
+        />
+        <div id="tagsContainer">
+          <input
+            type="text"
+            id="tagsInput"
+            placeholder="skills (Enter to Add)"
+          />
+          <input type="hidden" id="tagsData" name="tags" value="[]" />
+        </div>
         <input type="submit" class="btn btn-primary" value="Post" />
         <br />
       </form>
+      <div id="error-message"></div>
     </div>
 
     <div class="containers" id="addbtn">
@@ -50,10 +66,56 @@
           <h2><%= job.jobName %></h2>
           <h3><span><%= job.compName %></span></h3>
         </div>
-        <p>Details: <%= job.details %></p>
-        <p>Mobile: <%= job.mobile %></p>
-        <p>Email: <%= job.email %></p>
-        <p>Salary: $<%= job.salary %></p>
+        <hr />
+        <table>
+          <tr>
+            <th class="thead">Date</th>
+            <th class="col">:</th>
+            <td><%= new Date(job.createdAt).toLocaleDateString('en-GB') %></td>
+          </tr>
+          <tr>
+            <th class="thead">Description</th>
+            <th class="col">:</th>
+            <td><%= job.details %></td>
+          </tr>
+          <tr>
+            <th class="thead">Mobile</th>
+            <th class="col">:</th>
+            <td><%= job.mobile %></td>
+          </tr>
+          <tr>
+            <th class="thead">Email</th>
+            <th class="col">:</th>
+            <td><%= job.email %></td>
+          </tr>
+          <tr>
+            <th class="thead">Salary</th>
+            <th class="col">:</th>
+            <td><%= job.salary %></td>
+          </tr>
+          <tr>
+            <th class="thead">City</th>
+            <th class="col">:</th>
+            <td><%= job.city %></td>
+          </tr>
+          <tr>
+            <th class="thead">Webiste</th>
+            <th class="col">:</th>
+            <td>
+              <a href="<%= job.website %>" target="_blank"
+                ><%= job.website %></a
+              >
+            </td>
+          </tr>
+          <tr>
+            <th class="thead">Skills</th>
+            <th class="col">:</th>
+            <td>
+              <% job.skills.forEach(skill => { %>
+              <span class="skill"><%= skill %>,</span><% }) %>
+            </td>
+          </tr>
+        </table>
         <a href="/hire/view/<%= job.jobId %>" class="button btn btn-primary"
           >View</a
         >
@@ -65,6 +127,46 @@
     </div>
 
     <script>
+      document
+        .getElementById("tagsInput")
+        .addEventListener("keydown", function (event) {
+          const value = event.target.value.trim();
+          if (event.key === "Enter") {
+            event.preventDefault();
+            addTag(value);
+            event.target.value = "";
+          }
+        });
+
+      function addTag(tagValue) {
+        if (tagValue) {
+          const tag = document.createElement("span");
+          tag.classList.add("tag");
+          tag.textContent = tagValue;
+
+          const close = document.createElement("span");
+          close.classList.add("close");
+          close.innerHTML = "&times;";
+          close.addEventListener("click", function () {
+            tag.remove();
+          });
+
+          tag.appendChild(close);
+
+          document
+            .getElementById("tagsContainer")
+            .insertBefore(tag, document.getElementById("tagsInput"));
+          updateTagsInput(); // Update hidden input on tag addition
+        }
+      }
+
+      function updateTagsInput() {
+        const tagsArray = Array.from(document.querySelectorAll(".tag")).map(
+          (tag) => tag.textContent.trim().replace(/×/g, "")
+        );
+        document.getElementById("tagsData").value = JSON.stringify(tagsArray);
+      }
+
       const addJob = () => {
         document.getElementById("addbtn").style.display = "none";
         document.getElementById("form").style.display = "block";
@@ -77,6 +179,38 @@
         document.getElementById("myJob").style.display = "block";
         document.getElementById("backBtn").style.display = "none";
       };
+
+      const form = document.getElementById("hireForm");
+      const mobileInput = document.getElementById("mobile");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", function (event) {
+        document.querySelectorAll(".error-message").forEach((element) => {
+          element.remove();
+        });
+
+        errorMessage.innerHTML = "";
+        let errors = [];
+
+        // Validate mobile number
+        const mobileRegex = /^\d{10}$/;
+        if (!mobileRegex.test(mobileInput.value)) {
+          errors.push({
+            input: mobileInput,
+            message: "Mobile number should be 10 digits.",
+          });
+        }
+
+        if (errors.length > 0) {
+          event.preventDefault(); // Prevent form submission
+          errors.forEach(({ input, message }) => {
+            const errorElement = document.createElement("div");
+            errorElement.classList.add("error-message");
+            errorElement.textContent = message;
+            input.insertAdjacentElement("afterend", errorElement);
+          });
+        }
+      });
     </script>
   </body>
 </html>
