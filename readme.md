@@ -35,7 +35,7 @@ To run the project locally, follow these steps:
 
 2. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/haansh.git
+   git clone https://github.com/HariMalam/Haansh.git
 
 3. Navigate to the project directory::
    ```bash
