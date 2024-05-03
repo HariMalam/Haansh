@@ -4,7 +4,7 @@ body {
   background-color: #f4f4f4;
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
@@ -32,6 +32,7 @@ h1{
   color: red;
   margin-bottom: 10px;
 }
+
 .job h3 {
   font-size: 30px;
 }
@@ -40,52 +41,52 @@ h1{
   margin: 5px 0;
 }
 
-.jobMain{
+.jobMain {
   display: flex;
   justify-content: space-between;
 }
 
-.button{
+.button {
   width: 150px;
 }
 
-.searchForm{
+.searchForm {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#select{
+#select {
   width: 25%;
   padding: 5px;
 }
 
-.search{
+.search {
   width: 50%;
   padding: 5px;
 }
 
-.searchBtn{
+.searchBtn {
   width: 20%;
 }
 
-.box{
+.box {
   width: 60%;
   margin: 20px auto;
   padding: 20px 0px;
   border-radius: 8px;
 }
 
-th{
+th {
   width: 25%;
 }
-table{
+table {
   margin-bottom: 20px;
   width: 100%;
 }
 
-.col{
+.col {
   width: fit-content;
   width: 10px;
   padding-right: 20px;

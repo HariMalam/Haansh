@@ -1,13 +1,12 @@
-
-
 body {
   background-color: #f0f0f0;
 }
 
-.thead{
+.thead {
   width: 25%;
 }
-table{
+
+table {
   margin-bottom: 20px;
   width: 100%;
 }
@@ -96,12 +95,12 @@ input[type="submit"] {
   font-size: 20px;
 }
 
-.jobMain{
+.jobMain {
   display: flex;
   justify-content: space-between;
 }
 
-.button{
+.button {
   width: 150px;
 }
 
@@ -122,13 +121,13 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-.col{
+.col {
   width: fit-content;
   width: 10px;
   padding-right: 20px;
   padding-bottom: 5px;
 }
 
-.error-message{
+.error-message {
   color: red;
 }

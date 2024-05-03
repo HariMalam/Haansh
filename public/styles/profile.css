@@ -36,6 +36,7 @@ td {
   padding-left: 20px;
   justify-content: space-between;
 }
+
 td .error-message {
   color: red;
 }
@@ -49,6 +50,7 @@ td input {
 .epage {
   display: none;
 }
+
 .backBtn {
   width: 140px;
   display: none;
