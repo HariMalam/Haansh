@@ -48,16 +48,16 @@ app.use(setUser);
 
 app.use("/", handleHome);
 app.use("/auth", handleAuth);
+app.use("/about", handleAbout);
 
 app.use(restrictToLoggedinUserOnly);
 
 app.use("/hire", handleHire);
 app.use("/work", handleWork);
-app.use("/about", handleAbout);
 app.use("/profile", handleProfile);
 app.use("/action", handleAction);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => {
   console.log(`Server is running on Port ${PORT}`);
 });
