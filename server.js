@@ -24,7 +24,7 @@ mongoose
     console.error("MongoDB connection error:", err);
     process.exit(1);
   });
-
+  
 const app = express();
 
 app.set("view engine", "ejs");
