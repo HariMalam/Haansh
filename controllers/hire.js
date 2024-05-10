@@ -31,9 +31,6 @@ const handlePostHire = async (req, res) => {
 
   const skills = JSON.parse(tags);
 
-  console.log(skills);
-  console.log(city);
-
   const jobId = uuidv4();
   const username = req.user.username;
 

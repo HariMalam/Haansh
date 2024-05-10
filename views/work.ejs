@@ -85,9 +85,9 @@
       <% if (apply.some(myJob => myJob.jobId === job.jobId)) { %> <%
       apply.filter(myJob => myJob.jobId === job.jobId).forEach(myJob => { %> <%
       if(myJob.status === "Hired"){%>
-      <a class="btn btn-success button"><%= myJob.status %></a>
+      <a class="btn btn-success button">Congratulations, You Are Hired</a>
       <% }if(myJob.status === "Rejected"){%>
-      <a class="btn btn-danger button"><%= myJob.status %></a>
+      <a class="btn btn-danger button">Sorry, You Are Rejected</a>
       <% }if(myJob.status === "pending"){%>
       <a class="btn btn-warning button"><%= myJob.status %></a>
       <a href="/action/cancle/<%= myJob._id %>" class="btn btn-danger button"
